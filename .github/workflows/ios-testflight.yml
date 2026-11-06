@@ -1,0 +1,74 @@
+name: iOS TestFlight
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-testflight-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # SDK 57 needs Xcode 26.4+. GitHub's macOS 26 image ships Xcode 26.x;
+    # the version check below fails early if the image is older.
+    runs-on: macos-26
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Check Xcode version
+        run: |
+          xcodebuild -version
+          version="$(xcodebuild -version | awk '/^Xcode/{print $2}')"
+          major="${version%%.*}"
+          rest="${version#*.}"
+          minor="${rest%%.*}"
+          if [ "$major" -lt 26 ] || { [ "$major" -eq 26 ] && [ "$minor" -lt 4 ]; }; then
+            echo "OpenPad SDK 57 requires Xcode 26.4 or newer; this runner has Xcode $version."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      # Build, sign, and archive on the runner. This does not consume the
+      # EAS cloud build quota; it only uses GitHub Actions minutes.
+      - name: Build IPA with EAS local
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          npx eas-cli@latest build \
+            --local \
+            --platform ios \
+            --profile production \
+            --non-interactive \
+            --output build/OpenPad.ipa
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpad-ipa
+          path: build/OpenPad.ipa
+          if-no-files-found: error
+
+      - name: Submit to TestFlight
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          npx eas-cli@latest submit \
+            --platform ios \
+            --path build/OpenPad.ipa \
+            --profile production \
+            --non-interactive

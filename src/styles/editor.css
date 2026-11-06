@@ -1,0 +1,60 @@
+/* Annotation highlights */
+.annotation-highlight {
+  background-color: #fef08a;
+  border-bottom: 2px solid #eab308;
+  border-radius: 2px;
+  padding: 1px 0;
+  cursor: pointer;
+}
+
+.annotation-highlight:hover {
+  background-color: #fde047;
+}
+
+/* TipTap editor styles */
+.tiptap {
+  outline: none;
+}
+
+.tiptap p {
+  margin-bottom: 0.5em;
+}
+
+.tiptap h1 {
+  font-size: 1.75em;
+  font-weight: 700;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap h2 {
+  font-size: 1.35em;
+  font-weight: 600;
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+.tiptap ul, .tiptap ol {
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap blockquote {
+  border-left: 3px solid #e2e8f0;
+  padding-left: 1em;
+  color: #64748b;
+  margin-bottom: 0.5em;
+}
+
+.tiptap code {
+  background-color: #f1f5f9;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: 0.9em;
+}
+
+.tiptap mark {
+  background-color: #fef08a;
+  border-radius: 2px;
+  padding: 1px 0;
+}

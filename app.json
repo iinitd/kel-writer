@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "OpenPad",
+    "slug": "writer",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "openpad",
+    "ios": {
+      "bundleIdentifier": "lol.milio.openpad",
+      "appleTeamId": "CH854588A4",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "lol.milio.openpad",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "name": "OpenPad",
+      "shortName": "OpenPad",
+      "description": "OpenPad \u2014 a focused writing workspace powered by Paseo, OpenClaw, and OpenCode.",
+      "display": "standalone",
+      "startUrl": "/",
+      "scope": "/",
+      "themeColor": "#ffffff",
+      "backgroundColor": "#ffffff",
+      "barStyle": "default"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "dd2e1e62-5b9b-436d-903b-528991ecb27b"
+      }
+    },
+    "owner": "iinitd"
+  }
+}

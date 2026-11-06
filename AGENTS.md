@@ -1,0 +1,25 @@
+# Expo HAS CHANGED
+
+Read the exact versioned docs at https://docs.expo.dev/versions/v56.0.0/ before writing any code.
+
+# Local Working Rules
+
+- Routine code changes in this project usually do not need new test files.
+- Routine code changes in this project usually do not need test runs.
+- If a bug is unclear, keeps regressing, or needs confirmation, it is acceptable to build a minimal local repro or run targeted verification.
+- By default, modify the code directly and let the user verify changes manually.
+
+# Backend Priorities
+
+- **OpenCode is the primary backend for feature work.** Implement and verify new capabilities against the OpenCode adapter first.
+- **Do not change the Paseo or OpenClaw adapters as part of feature work.** They are maintained as-is; leave their behavior, mapping, and transports untouched unless the user explicitly asks for a change there.
+- Add new backend capabilities as optional methods or capability-detected features. Do not widen the shared `WriterBackend` contract with required methods that would force edits to Paseo or OpenClaw.
+- Shared UI, store, and contract changes are allowed when they are backend-neutral, but they must preserve existing Paseo and OpenClaw behavior. If a feature cannot ship without modifying those adapters, stop and ask the user first.
+- Do not chase feature parity across backends. If Paseo or OpenClaw lacks a new capability, document or degrade the UI instead of emulating the missing behavior in their adapters.
+- Paseo and OpenClaw bug fixes are out of scope for ordinary feature iterations. Treat them as separate, explicitly requested work.
+
+# Ongoing Discussions
+
+- Internal product discussions, design notes, and research records live in a separate private `research-openpad` project, not in this repository. Read the current discussion state there before continuing a research topic, and record substantive new questions, insights, corrections, and decisions there in the same turn.
+- The Agent Communication exploration is research only. Recording or discussing it does not authorize feature work; follow any later explicit user instruction about implementation.
+- Cross-backend file exchange notes stay in the same private research project; link substantive developments to the Agent Communication record when they affect context or artifact handoffs.

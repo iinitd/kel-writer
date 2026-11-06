@@ -1,0 +1,48 @@
+import { StyleSheet } from "react-native";
+import { THEME } from "../styles/theme";
+
+// Shared mobile composer geometry. The document and agent inputs have different
+// behavior, but their core field should read as the same control.
+export const COMPACT_COMPOSER_ICON_SIZE = 15;
+
+export const COMPACT_COMPOSER_STYLES = StyleSheet.create({
+  pill: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: 44,
+    paddingLeft: THEME.spacing.md,
+    paddingRight: 4,
+    paddingVertical: 2,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: THEME.colors.border,
+    borderRadius: THEME.radii.full,
+    backgroundColor: THEME.colors.background,
+  },
+  input: {
+    flex: 1,
+    height: 38,
+    paddingHorizontal: 4,
+    paddingVertical: 9,
+    fontSize: 14,
+    lineHeight: 20,
+    textAlignVertical: "center",
+    color: THEME.colors.text,
+  },
+  send: {
+    width: 30,
+    height: 30,
+    marginLeft: 6,
+    borderRadius: 15,
+    overflow: "hidden",
+    backgroundColor: THEME.colors.primary,
+  },
+  sendInner: {
+    width: 30,
+    height: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  sendDisabled: {
+    backgroundColor: "rgba(148,163,184,0.4)",
+  },
+});
